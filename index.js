@@ -17,14 +17,6 @@ aplicacion.use('/api', productoRoutes);
 
 const port = process.env.PORT || 3000;
 
-// Verificar si pg está disponible
-try {
-    const client = new Client();
-    console.log('Paquete pg está disponible');
-} catch (error) {
-    console.error('Paquete pg no está disponible: ' + error);
-}
-
 conexionBD.authenticate()
     .then(() => {
         console.log('Conexión a la base de datos exitosa');
