@@ -4,7 +4,6 @@ const { Sequelize } = require('sequelize');
 let conexionBD;
 
 if (process.env.PRODUCTION == 'true') {
-    console.log("a1ui1");
     conexionBD = new Sequelize(process.env.POSTGRES_URL, {
         dialect: 'postgres',
         dialectOptions: {
