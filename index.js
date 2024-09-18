@@ -7,7 +7,6 @@ const conexionBD = require('./src/config/database');
 
 const aplicacion = express();
 
-
 aplicacion.use(express.json());
 aplicacion.use(cors());
 
@@ -15,11 +14,12 @@ aplicacion.use('/auth', authRoutes);
 aplicacion.use('/api', categoriaRoutes);
 aplicacion.use('/api', productoRoutes);
 
+const port = process.env.PORT || 3000;
 
 conexionBD.sync().then(() => {
-    aplicacion.listen(3000, () => {
-        console.log('El servidor ya esta corriendo en el puerto 3000, lets goo!!!');
+    aplicacion.listen(port, () => {
+        console.log(`El servidor ya está corriendo en el puerto ${port}, ¡vamos!`);
     });
 }).catch(error => {
-    console.error('No pude conectarme a la base de datos hice todo lo posible!' + error);
+    console.error('No pude conectarme a la base de datos, hice todo lo posible: ' + error);
 });
