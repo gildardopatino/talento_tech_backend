@@ -3,7 +3,7 @@ const { Sequelize } = require('sequelize');
 
 let conexionBD;
 
-if (process.env.PRODUCTION) {
+if (process.env.PRODUCTION === 'true') {
     conexionBD = new Sequelize(process.env.POSTGRES_URL, {
         dialect: 'postgres',
         dialectOptions: {

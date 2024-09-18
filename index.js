@@ -16,10 +16,16 @@ aplicacion.use('/api', productoRoutes);
 
 const port = process.env.PORT || 3000;
 
-conexionBD.sync().then(() => {
-    aplicacion.listen(port, () => {
-        console.log(`El servidor ya está corriendo en el puerto ${port}, ¡vamos!`);
+conexionBD.authenticate()
+    .then(() => {
+        console.log('Conexión a la base de datos exitosa');
+        return conexionBD.sync();
+    })
+    .then(() => {
+        aplicacion.listen(port, () => {
+            console.log(`El servidor ya está corriendo en el puerto ${port}, ¡vamos!`);
+        });
+    })
+    .catch(error => {
+        console.error('No pude conectarme a la base de datos, hice todo lo posible: ' + error);
     });
-}).catch(error => {
-    console.error('No pude conectarme a la base de datos, hice todo lo posible: ' + error);
-});
