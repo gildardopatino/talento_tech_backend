@@ -4,7 +4,7 @@ const authRoutes = require('./src/routes/authRoutes');
 const categoriaRoutes = require('./src/routes/categoriaRoutes');
 const productoRoutes = require('./src/routes/productoRoutes');
 const conexionBD = require('./src/config/database');
-const { Client } = require('pg'); // Verificar si pg está disponible
+const { swaggerUi, specs } = require('./src/config/swagger');
 
 const aplicacion = express();
 
@@ -14,6 +14,7 @@ aplicacion.use(cors());
 aplicacion.use('/auth', authRoutes);
 aplicacion.use('/api', categoriaRoutes);
 aplicacion.use('/api', productoRoutes);
+aplicacion.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 const port = process.env.PORT || 3000;
 
