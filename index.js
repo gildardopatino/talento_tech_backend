@@ -5,6 +5,7 @@ const categoriaRoutes = require('./src/routes/categoriaRoutes');
 const productoRoutes = require('./src/routes/productoRoutes');
 const conexionBD = require('./src/config/database');
 const { swaggerUi, specs } = require('./src/config/swagger');
+const { Client } = require('pg'); // Verificar si pg está disponible
 
 const aplicacion = express();
 
